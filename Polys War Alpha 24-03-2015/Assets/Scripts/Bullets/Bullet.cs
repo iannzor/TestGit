@@ -75,10 +75,12 @@ public class Bullet : MonoBehaviour {
 	void OnTriggerEnter(Collider coll){
 		// on récupère le mob
 		GameObject target = coll.gameObject;
+		Debug.Log (target);
 		// si le mob est un adversaire
 		if (!target.CompareTag (this.tag)) {
 			// on obtient le composant Mob
-			Mob mobTarget = (Mob)target.GetComponent<Mob> ();
+			Mob mobTarget = target.GetComponent<Mob> ();
+			Debug.Log(mobTarget);
 			// on fait perdre de la vie
 			mobTarget.loseLife (this.damage);
 			// si on a un malus

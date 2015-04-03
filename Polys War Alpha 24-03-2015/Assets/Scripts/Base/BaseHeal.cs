@@ -14,10 +14,6 @@ public class BaseHeal : MonoBehaviour {
 	[SerializeField]
 	Base b = null;
 
-	// le player à heal
-	[SerializeField]
-	Player p = null;
-
 	// temps entre deux heals
 	[SerializeField]
 	float middle = 5;
@@ -29,6 +25,9 @@ public class BaseHeal : MonoBehaviour {
 	// start timer
 	float startTimer = 0;
 
+	// hey
+	Player ownPlayer = null;
+
 	// actived health
 	bool activatedHeal = false;
 
@@ -37,6 +36,7 @@ public class BaseHeal : MonoBehaviour {
 		// si ce n'est pas un adversaire
 		if (col.gameObject.CompareTag (this.tag)) {
 			activatedHeal = true;
+			ownPlayer = col.GetComponent<Player>();
 			Debug.Log ("it works ?");
 		}
 	}
@@ -46,6 +46,7 @@ public class BaseHeal : MonoBehaviour {
 		// on arrete de la heal
 		if (col.gameObject.CompareTag (this.tag)) {
 			activatedHeal = false;
+			ownPlayer = null;
 		}
 	}
 
@@ -71,11 +72,11 @@ public class BaseHeal : MonoBehaviour {
 	void Heal(){
 		// on calcul en fonction de la distance du player et du pourcentage de heal accepté
 		Debug.Log ("get health");
-		Debug.Log (p.getHealth());
-		float temp = p.getHealth () * (Vector3.Distance(this.gameObject.transform.position, p.gameObject.transform.position) / b.getScopeHealthPlayer() * this.pourcent);
+		Debug.Log (ownPlayer.getHealth());
+		float temp = ownPlayer.getHealth () * (Vector3.Distance(this.gameObject.transform.position, ownPlayer.gameObject.transform.position) / b.getScopeHealthPlayer() * this.pourcent);
 		Debug.Log ("HEAL AMOUT");
 		Debug.Log (temp);	
 		// on heal le player
-		p.winLife (temp);
+		ownPlayer.winLife (temp);
 	}
 }

@@ -7,39 +7,85 @@ public class Connexion : MonoBehaviour {
 
 	[SerializeField]
 	GameObject score;
+	/*
+	public string adresse_ip = "";
+	public string port = "";
+	public string nb_player = "2";
+		
+	void OnGUI ()
+	{
 
-	bool player1isConnected = false;
-	bool player2isConnected = false;
-	public bool soloPlay = true;
+		if (!(Network.isServer ^ Network.isClient)) {
+
+			GUILayout.BeginVertical ();
+			
+			GUILayout.BeginHorizontal ();
+			
+			GUILayout.Label ("Server IP : ");
+			
+			adresse_ip = GUILayout.TextField (adresse_ip);
+			
+			GUILayout.Label ("Server Port : ");
+			
+			port = GUILayout.TextField (port);
+
+			GUILayout.EndHorizontal ();
+			
+			GUILayout.BeginHorizontal ();
+
+			if (GUILayout.Button ("Start Client")) {
+				StartClient ();
+			}
+			
+			if (GUILayout.Button ("Start Server")) {
+				StartServer ();
+			}
+			
+			GUILayout.EndHorizontal ();
+			
+			GUILayout.EndVertical ();
+		}
+	}
+	
+
+	void StartServer ()
+	{
+		try {
+			//Network.InitializeSecurity ();
+			Network.InitializeServer (int.Parse (nb_player), int.Parse (port), true);
+		} catch (Exception e) {
+			Debug.LogError (e.Message);
+		}
+	}
+
+	void StartClient ()
+	{
+		try {
+			Network.Connect (adresse_ip, int.Parse (port));
+		} catch (Exception e) {
+			Debug.LogError (e.Message);
+		}
+	}
+
+
+	
+	}
+	*/
 
 	
 	void Start () {
 
-		if (Network.isServer)
-			player1isConnected = true;
 
-		if (Network.isClient)
-			GetComponent<NetworkView>().RPC ("isclientConnected", RPCMode.Server);
-
-		if (soloPlay)
-			isclientConnected ();
+		
 	}
 	
+	
+	void Update () {
 
-	[RPC]
-	void isclientConnected()
-	{
-		player2isConnected = true;
-
-		if (player1isConnected && player2isConnected)
-			GetComponent<NetworkView>().RPC ("activateScript", RPCMode.All);
-
-	}
-
-	[RPC]
-	void activateScript()
-	{
-		score.gameObject.SetActive(true);
-		//gameObject.SetActive(false);
+		if (Network.isClient || Network.isServer) 
+		{
+			score.gameObject.SetActive(true);
+			gameObject.SetActive(false);
+		}
 	}
 }

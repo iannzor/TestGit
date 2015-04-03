@@ -58,10 +58,25 @@ public class Mob : MonoBehaviour {
 	// le navmesh
 	[SerializeField]
 	NavMeshAgent navSpeed;
+	// le mesh renderer pour changer la couleur du material
+	[SerializeField]
+	MeshRenderer ownMeshRenderer = null;
 	// le collider
 	//[SerializeField]
 //	SphereCollider coll;
-	
+
+	public void setRed(float otherRed){
+		this.red = otherRed;
+	}
+
+	public void setGreen(float otherGreen){
+		this.green = otherGreen;
+	}
+
+	public void setBlue(float otherBlue){
+		this.blue = otherBlue;
+	}
+
 	public void setArmor(float oArmor)	{
 		this.armor = oArmor;
 	}
@@ -103,7 +118,15 @@ public class Mob : MonoBehaviour {
 		//changement de la portée du mob
 		//coll.radius = scope;
 		// affectation des valeurs au shader
-		
+
+		if (this.tag == "red") {
+			setRed (1f);
+			ownMeshRenderer.materials[1].color = new Color(255, 0, 0);
+		} else if (this.tag == "blue") {
+			setBlue(1f);
+			ownMeshRenderer.materials[1].color = new Color(0, 0, 255);
+		}
+
 		// la vie maximum
 		healthRend.material.SetFloat ("_MaxHps", maxHealth);
 		// la vie

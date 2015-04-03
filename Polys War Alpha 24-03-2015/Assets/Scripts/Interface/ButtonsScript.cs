@@ -37,7 +37,7 @@ public class ButtonsScript : MonoBehaviour {
 	{
 		try {
 			Network.Connect (adresse_ip.text, int.Parse (port.text));
-			//Application.LoadLevel("Polys War");
+			Application.LoadLevel("Polys War");
 		} catch (Exception e) {
 			Debug.LogError (e.Message);
 		}
@@ -46,11 +46,6 @@ public class ButtonsScript : MonoBehaviour {
 	public void ExitGame()
 	{
 		Application.Quit ();
-	}
-
-	void OnConnectedToServer()
-	{
-		Application.LoadLevel ("Polys War");
 	}
 
 

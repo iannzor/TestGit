@@ -8,11 +8,10 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
 	// variables
-	
 
 	// vie 
 	[SerializeField]
-	static float health = 100f;
+	float health = 100f;
 
 	// max vie 
 	[SerializeField]
@@ -29,9 +28,6 @@ public class Player : MonoBehaviour {
 	// spawn
 	[SerializeField]
 	Transform spawnPosition;
-
-
-
 
 	public float getHealth(){
 		return health;
@@ -70,11 +66,12 @@ public class Player : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.K))
 		{
 
-			Score.ready = true;
+			Debug.Log ("zouzou");
+			Debug.Log (getHealth());
+
 
 		}
 	}
-
 
 
 	

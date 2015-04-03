@@ -61,13 +61,13 @@ public class LaserScript : MonoBehaviour
 								particle.Play ();
 								*/
 								
-								GetComponent<NetworkView>().RPC("shotLaser", RPCMode.All, hit.point, eye.transform.position, cam.transform.rotation );
+								GetComponent<NetworkView>().RPC("shotLaser", RPCMode.AllBuffered, hit.point, eye.transform.position, cam.transform.rotation );
 
 								if (hit.transform.name == PlayerTransform.name)
 								GetComponent<NetworkView>().RPC("getHit", RPCMode.Others, WeaponDamage);
 
-								if (hit.transform.tag == Score.enemy && hit.transform.gameObject.layer == 9 ){
-
+								if (hit.transform.tag == Score.enemy && hit.transform.gameObject.layer == 9){
+				Debug.Log (hit.transform);
 									Mob m = hit.transform.GetComponent<Mob>();
 									m.loseLife(2);
 									

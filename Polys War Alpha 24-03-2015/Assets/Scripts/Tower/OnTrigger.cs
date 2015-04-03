@@ -24,19 +24,11 @@ public class OnTrigger : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-	
-
 		i++;
-
-		Debug.Log (i);
 		if (i == 1)
 			buildable = true;
-
 		if (i>1) 
 			buildable = false;
-
-
-
 	}
 
 	void OnTriggerExit(Collider other)
@@ -44,7 +36,5 @@ public class OnTrigger : MonoBehaviour {
 		i--;
 		if (i == 1)
 			buildable = true;
-			
-
 	}
 }

@@ -84,7 +84,7 @@ public class InitiateOnClick : MonoBehaviour {
 					prefab.transform.tag = Score.team;
 					prefab.layer = 12;
 					prefabAttackZone.transform.tag = Score.team;
-					GetComponent<NetworkView>().RPC("setTags", RPCMode.Others);
+					//GetComponent<NetworkView>().RPC("setTags", RPCMode.Others);
 					Network.Instantiate(prefab, prefab.transform.position, prefab.transform.rotation, 0);
 
 
